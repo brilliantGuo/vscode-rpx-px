@@ -1,36 +1,73 @@
 {
-	"name": "vscode-rpx-px",
-	"displayName": "vscode-rpx-px",
-	"description": "a conversion between rpx and px",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.35.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:extension.helloWorld"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [{
-			"command": "extension.helloWorld",
-			"title": "Hello World"
-		}]
-	},
-	"scripts": {
-		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "yarn run compile && node ./node_modules/vscode/bin/test"
-	},
-	"devDependencies": {
-		"typescript": "^3.3.1",
-		"vscode": "^1.1.28",
-		"tslint": "^5.12.1",
-		"@types/node": "^10.12.21",
-		"@types/mocha": "^2.2.42"
-	}
+  "name": "vscode-rpx-px",
+  "displayName": "vscode-rpx-px",
+  "description": "a conversion between rpx and px",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.35.0"
+  },
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.toPx",
+    "onCommand:extension.toRpx"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.toPx",
+        "title": "Convert to px"
+      },
+      {
+        "command": "extension.toRpx",
+        "title": "Convert to rpx"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.toPx",
+        "key": "Shift+Alt+p"
+      },
+      {
+        "command": "extension.toRpx",
+        "key": "Shift+Alt+r"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "rpx-px configuration",
+      "properties": {
+        "rpx-px.px": {
+          "type": "number",
+          "default": 1,
+          "description": "The proportion of px"
+        },
+        "rpx-px.rpx": {
+          "type": "number",
+          "default": 2,
+          "description": "The proportion of rpx"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "webpack --mode production",
+    "compile": "webpack --mode none",
+    "watch": "webpack --mode none --watch",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "yarn run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.42",
+    "@types/node": "^10.12.21",
+    "ts-loader": "^6.0.4",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1",
+    "vscode": "^1.1.28",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5"
+  }
 }

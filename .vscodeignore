@@ -1,8 +1,12 @@
 .vscode/**
 .vscode-test/**
-out/test/**
+node_modules
+out/**
 src/**
 .gitignore
+webpack.config.js
+npm-debug.log
+yarn.lock
 vsc-extension-quickstart.md
 **/tsconfig.json
 **/tslint.json
